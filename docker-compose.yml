@@ -1,19 +1,39 @@
 version: "3"
 services:
+  elasticsearch:
+    image: elasticsearch:8.14.3
+    environment:
+      discovery.type: "single-node"
+      xpack.security.enabled: false
+    ports:
+      - 9200:9200
+      - 9300:9300
+    mem_limit: 6000M
+    ulimits:
+      nofile: # Fix memory leak issue on some systems when LimitCORE=infinity (containerd)
+          soft: 1048576
+          hard: 1048576
+
   postgres:
     image: postgres:latest
     container_name: postgres
     ports:
-      - "6500:5432"
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'pass'
+      POSTGRES_DB: 'postgres'
     volumes:
       - progresDB:/var/lib/postgresql/data
     env_file:
       - ./.env
+
   pgAdmin:
     image: dpage/pgadmin4
     container_name: pgAdmin
-    env_file:
-      - ./.env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: myemail@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: a12345678
     ports:
       - "5050:80"
 volumes:
