@@ -17,7 +17,7 @@ const ARG_SCHELDUE_APP: &str = "schedule_app";
 
 #[tokio::main]
 async fn main() {
-    let args = std::env::var("JWT_SECRET").expect("");
+    let args = std::env::var("TYPE_APP").unwrap();
     match args.as_str() {
         ARG_WEB_APP => run_web_app().await,
         ARG_TASKS_APP => run_tasks_app().await,

@@ -23,4 +23,8 @@ impl Config {
             database_url: database_url.clone()
         };
     }
+
+    pub fn exception_chat_id() -> String {
+        String::from("-1001355899142")
+    }
 }
