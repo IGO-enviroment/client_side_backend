@@ -1,0 +1,16 @@
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+/Users/prog63/.rvm/rubies/ruby-3.3.5/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-cl186l sitelibdir\=./.gem.20240917-51189-cl186l clean
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-cl186l sitelibdir\=./.gem.20240917-51189-cl186l
+make: Nothing to be done for `all'.
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-cl186l sitelibdir\=./.gem.20240917-51189-cl186l install
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/json-2.7.2/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-cl186l sitelibdir\=./.gem.20240917-51189-cl186l clean

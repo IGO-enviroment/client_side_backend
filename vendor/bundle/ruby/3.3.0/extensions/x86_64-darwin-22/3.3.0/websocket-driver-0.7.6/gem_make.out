@@ -1,0 +1,18 @@
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+/Users/prog63/.rvm/rubies/ruby-3.3.5/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-tcoz94 sitelibdir\=./.gem.20240917-51189-tcoz94 clean
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-tcoz94 sitelibdir\=./.gem.20240917-51189-tcoz94
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-tcoz94 sitelibdir\=./.gem.20240917-51189-tcoz94 install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20240917-51189-tcoz94
+
+current directory: /Users/prog63/client_side_backend/vendor/bundle/ruby/3.3.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240917-51189-tcoz94 sitelibdir\=./.gem.20240917-51189-tcoz94 clean
