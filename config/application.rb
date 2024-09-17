@@ -43,7 +43,7 @@ module ClientSideBackend
 
     # Настройка асинхронных запросов к БД.
     config.active_record.async_query_executor = :global_thread_pool
-    config.active_record.global_executor_concurrency = 4
+    config.active_record.global_executor_concurrency = Settings.app.rails_max_threads
     config.active_support.isolation_level = :fiber   
   end
 end

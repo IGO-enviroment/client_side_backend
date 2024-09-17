@@ -1,0 +1,19 @@
+app:
+  name: museum
+  rails_max_threads: 10
+
+app_db:
+  port: 5432
+  host: localhost
+  username: museum
+  password: mypassword
+  poll: 10
+
+storage:
+  access_key: ""
+  secret_key: ""
+  region: ""
+  bucket: ""
+
+elastic:
+  server_url: "elastic_museum:9200"

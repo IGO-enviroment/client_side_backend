@@ -15,9 +15,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= Settings.app_db.username %>
+  password: <%= Settings.app_db.password %>
+  host: <%= Settings.app_db.host %>
+  port: <%= Settings.app_db.port %>
+  pool: <%= Settings.app.rails_max_threads %>
 
 
 development:

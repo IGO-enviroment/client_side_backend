@@ -14,6 +14,10 @@ gem "bootsnap", require: false
 gem "whenever", require: false
 
 gem "rack-cors"
+gem "image_processing", ">= 1.2"
+
+gem "fast_blank", "~> 1.0"
+gem "oj", "~> 3.14"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -25,3 +29,9 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
+
+gem "sidekiq", "~> 7.3"
+
+gem "bcrypt", "~> 3.1"
+
+gem "chewy", "~> 7.6"

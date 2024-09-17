@@ -1,0 +1,5 @@
+test:
+  host: <%= Settings.elastic.server_url %>
+  prefix: 'test'
+development:
+  host: <%= Settings.elastic.server_url %>

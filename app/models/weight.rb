@@ -1,6 +1,7 @@
-class Weight
-  TYPE_AND_VALUE = {
-    view: 1,
-    arrow: 2
-  }
+# frozen_string_literal: true
+
+#
+# Веса для постов.
+#
+class Weight < ApplicationRecord
 end

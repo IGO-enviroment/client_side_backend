@@ -66,6 +66,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "client_side_backend_production"
+  config.active_job.queue_adapter = :sidekiq
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
@@ -84,6 +85,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.active_storage.service = :timeweb
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
