@@ -1,0 +1,27 @@
+---
+:concurrency: <%= ENV.fetch('SIDEKIQ_CONCURRENCY', 5) %>
+:queues:
+  - [default, 8]
+  - [ingress, 4]
+  - [mailers, 2]
+  - [scheduler]
+
+:scheduler:
+  :listened_queues_only: true
+  :schedule:
+    scheduled_statuses_scheduler:
+      every: '5m'
+      class: Scheduler::ScheduledStatusesScheduler
+      queue: scheduler
+    weights_refresh_scheduler:
+      every: '5m'
+      class: Scheduler::Trends::RefreshScheduler
+      queue: scheduler
+    notifications_before_events_scheduler:
+      every: '5m'
+      class: Scheduler::Notifications::BeforeEventsScheduler
+      queue: scheduler
+    feedback_after_events_scheduler:
+      every: '5m'
+      class: Scheduler::Feedback::AfterEventsScheduler
+      queue: scheduler

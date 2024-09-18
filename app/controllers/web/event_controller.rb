@@ -8,6 +8,13 @@ module Web
     before_action :load_event, only: :show
     before_action :visits, only: :show
 
+    def index
+      operation = Events::FilterRecordsOperation.new(input: params).call
+      return render json: operation.errors, status: :internal_server_error if operation.failure?
+
+      render json: operation.result, status: :ok
+    end
+
     def show
       render json: {}, status: :ok
     end

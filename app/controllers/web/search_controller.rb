@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Museum
+module Web
   class SearchController < ApplicationController
     def show
       # by id search
