@@ -13,5 +13,9 @@ class Event < ApplicationRecord
   has_many :visits, dependent: :destroy
   has_many :weights, dependent: :destroy
 
+  has_many :orders, dependent: :destroy
+  has_many :tickets, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
+
   has_one_attached :preview
 end
