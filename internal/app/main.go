@@ -13,9 +13,10 @@ import (
 )
 
 type App struct {
-	db     *sqlx.DB
-	log    *zap.Logger
-	config configs.Config
+	db            *sqlx.DB
+	log           *zap.Logger
+	config        configs.Config
+	producerQueue *ProducerQueue
 }
 
 func NewApp() *App {
@@ -42,6 +43,8 @@ func (app *App) Setup(config configs.Config) error {
 		return err
 	}
 
+	app.producerQueue = nil
+
 	return nil
 }
 
@@ -64,4 +67,17 @@ func (app *App) RunWeb(router *mux.Router) {
 	}()
 
 	<-done
+}
+
+func (app *App) RunQueues() {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	consumer := NewConsumer(app.db, app.log, app.config)
+	consumer.RegisterHandler("send_email", func(job Job) error {
+		// Send email logic
+		return nil
+	})
+
+	go consumer.Run(ctx)
 }
