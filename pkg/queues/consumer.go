@@ -6,6 +6,12 @@ type ProcceItem struct {
 	Item ItemQueue
 }
 
+type ConsumerConfig struct {
+	Workers int
+	Queues string[]
+	SecondsForReserv int
+}
+
 type Consumer struct {
 	db     *sqlx.DB
 	log    *zap.Logger
@@ -60,25 +66,34 @@ func (c *Consumer) workersQueue(ctx context.Context, queueName) {
 						continue
 					}
 
-					NewJob(c, item.Item.Payload, ctx).Start(item.Item.Method)
+					err := NewJob(c, item.Item.Payload, ctx).Start(item.Item.Method)
+
+					if err != nil {
+            c.log.Log(zap.ErrorLevel, "Ошибка обработки из очереди", zap.Error(err))
+            continue
+          }
+
+					c.ProcessedItem(item.ID)
 
 					wg.Done()
-                }
+        }
 			}
-        }(wg)
+    }(wg)
 	}
 }
 
 func (c *Consumer) getItem(ctx context.Context, queueName string) (interface{}, error) {
 	var item ProcceItem
 
+	// , processed = true
 	err := c.db.QueryRowx(
 		`UPDATE queue
-		SET procced_at = CURRENT_DATE, processed = true
-		WHERE processed = false AND queue_name = $1 AND (run_at < $2 OR run_at IS NULL) ORDER BY id LIMIT 1
+		SET reservAt = $3
+		WHERE processed = false AND queue_name = $1 AND ((run_at < $2 OR run_at IS NULL) AND (reservAt IS NULL OR reservAt < $2) ORDER BY id LIMIT 1
 		RETURNING id, item`,
 		queueName,
-		time.Now().UTC()
+		time.Now().UTC(),
+		time.Now().UTC() + (time.Second * (5 * 60))
 	).Scan(&item)
 
 	if err == sql.ErrNoRows {
@@ -88,4 +103,11 @@ func (c *Consumer) getItem(ctx context.Context, queueName string) (interface{}, 
 	}
 
 	return item, nil
+}
+
+func (c *Consumer) ProcessedItem(itemID int) {
+	_, err := c.db.Exec(`UPDATE queue SET processed = true WHERE id = $1`, itemID)
+  if err != nil {
+    c.log.Log(zap.ErrorLevel, "Ошибка обработки из очереди", zap.Error(err))
+  }
 }
